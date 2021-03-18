@@ -2,18 +2,21 @@ import Drink_Page from "../../src/pages/drink";
 import { useRouter } from "next/router";
 
 export async function getStaticProps(context) {
-  const id = context.params.id;
+  const slug = context.params.slug.replace(" ", "%20");
   const res = await fetch(
-    `https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${id.replace(
-      " ",
-      "%20"
-    )}`
+    `https://www.thecocktaildb.com/api/json/v1/1/search.php?i=${slug}`
   );
   const data = await res.json();
+
+  const listRes = await fetch(
+    `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${slug}`
+  );
+  const list = await listRes.json();
 
   return {
     props: {
       data,
+      list,
     },
   };
 }
@@ -35,7 +38,7 @@ export async function getStaticPaths() {
       .filter((j) => j.ingredients !== null)
       .map((m) => {
         return {
-          params: { id: m.ingredients[0].strIngredient.toString() },
+          params: { slug: m.ingredients[0].strIngredient.toString() },
         };
       }),
     fallback: false,
@@ -43,6 +46,6 @@ export async function getStaticPaths() {
   [0];
 }
 
-export default function Drink({ data }) {
-  return <Drink_Page data={data.ingredients[0]} />;
+export default function Drink({ data, list }) {
+  return <Drink_Page details={data.ingredients[0]} list={list.drinks} />;
 }

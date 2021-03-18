@@ -4,7 +4,7 @@ import Wave from "./Wave";
 const Layout: React.FC = ({ children }) => {
   return (
     <div>
-      {/* <Navigation /> */}
+      <Navigation />
       {children}
       <Wave />
     </div>

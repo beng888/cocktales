@@ -1,5 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Akaya+Kanadaka&display=swap&family=Redressed&display=swap");
-/* ./styles/globals.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  font-family: "Redressed", cursive;
+}
+
+#__next {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+}
+
+.tabbable {
+  @apply outline-none cursor-pointer;
+}

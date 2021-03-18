@@ -21,10 +21,10 @@ export const Home_Page: React.FC<Props> = ({ data }) => {
   }, []);
 
   const changeRoute = (slug) => {
-    setWave({ ...wave, color: randomColor(), fill: true });
+    setWave({ color: randomColor(), fill: true });
     setTimeout(() => {
       router.push("/drinks/" + slug);
-      setWave({ ...wave, fill: false });
+      // setWave({ ...wave, fill: false });
     }, 2000);
   };
 

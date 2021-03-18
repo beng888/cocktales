@@ -1,7 +1,5 @@
-import Home_Page from "../src/pages/home";
-
-export async function getStaticProps(context) {
-  let urls = [];
+export const fetchBottles = ()=> {
+     let urls = [];
   for (let i = 0; i < 10; i++) {
     urls.push("https://www.thecocktaildb.com/api/json/v1/1/lookup.php?iid=");
   }
@@ -24,11 +22,3 @@ export async function getStaticProps(context) {
     },
   };
 }
-
-export default function Home({ response, bottles }) {
-  return <Home_Page data={bottles} />;
-}
-
-// export default function Home() {
-//   return <div>HOME</div>;
-// }
